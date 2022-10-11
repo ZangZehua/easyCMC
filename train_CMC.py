@@ -4,10 +4,7 @@ Train CMC with AlexNet
 from __future__ import print_function
 
 import os
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0, 1, 2, 3"
 import sys
-import csv
 import time
 import torch
 import torch.backends.cudnn as cudnn
@@ -86,6 +83,7 @@ def parse_args():
 
     args = parser.parse_args()
 
+    args.data_base_path = args.data_folder
     if args.dataset == "stl10":
         save_path_base = "saved/STL-10_" + pretrain_time
         args.data_folder = os.path.join(args.data_folder, "STL-10")
@@ -108,7 +106,7 @@ def parse_args():
     args.tb_path = os.path.join(save_path_base, args.tb_path)
 
     if args.random_epoch is not None:
-        args.resume = os.path.join(args.data_folder, os.path.join("cmc_models_" + args.dataset, "ckpt_epoch_" + str(args.random_epoch) + ".pth" ))
+        args.resume = os.path.join(args.data_base_path, os.path.join("cmc_models_" + args.dataset, "ckpt_epoch_" + str(args.random_epoch) + ".pth" ))
 
     # create save folder
     if not os.path.isdir(save_path_base):
