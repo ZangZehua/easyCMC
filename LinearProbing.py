@@ -112,10 +112,6 @@ def parse_args():
         for model in models:
             args.models_path.append(models_path_base + "ckpt_epoch_" + str(model) + ".pth")
 
-    if args.dataset == 'imagenet':
-        if 'alexnet' not in args.model:
-            args.crop_low = 0.08
-
     iterations = args.lr_decay_epochs.split(',')
     args.lr_decay_epochs = list([])
     for it in iterations:
