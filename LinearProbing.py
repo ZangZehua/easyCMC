@@ -27,7 +27,7 @@ from models.LinearModel import LinearClassifierAlexNet, LinearClassifierResNet
 def parse_args():
 
     parser = argparse.ArgumentParser('argument for training')
-    parser.add_argument('--pretrain_time', type=str, default=None, help='the pretrain time of models')
+    parser.add_argument('--pretrain', type=str, default=None, help='the pretrain time of models')
 
     parser.add_argument('--print_freq', type=int, default=10, help='print frequency')
     parser.add_argument('--tb_freq', type=int, default=500, help='tb frequency')
@@ -98,7 +98,7 @@ def parse_args():
     else:
         raise FileNotFoundError
 
-    save_path_base = "saved/" + args.pretrain_time + "/"
+    save_path_base = "saved/" + args.pretrain + "/"
     args.save_folder = save_path_base + args.save_folder
     args.tb_folder = save_path_base + args.tb_folder
     if args.model_path is not None:
